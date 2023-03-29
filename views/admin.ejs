@@ -1,0 +1,18 @@
+<h1 class="mt-4">Admin Page</h1>
+<p class="lead mb-3">Welcome <%= user.name %></p>
+
+<div>
+  <p>Current Active Sessions:</p>
+  <% for( let sessionId in sessions ) { 
+    const userId = sessions[sessionId].passport.user  
+  %>
+    <div style="margin-bottom: 30px">
+      <p>Session ID: <%= sessionId %></p>
+      <p>User ID: <%= userId %></p>
+      <form action="/auth/revoke-session" method="post">
+        <input type="text" name="sessionId" id="" hidden value="<%= sessionId %>">
+        <input type="submit" value="Revoke Session">
+      </form>
+    </div>
+  <% } %>
+</div>
